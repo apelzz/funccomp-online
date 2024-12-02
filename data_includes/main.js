@@ -410,18 +410,30 @@ newTrial("practice",
         .wait()
 )
 
+newTrial("Func1train_intro",
+    newText('train_block_instr', train_block_instr)
+		.css({'font-size': '1.5em'})
+		.center()
+		.print()
+	,
+	newAudio("train_block_instr", "train_block_instr.mp3")
+        .play()
+        .wait()
+	,
+    newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
+)
 
 //////////////Main experiment//////////////
 Template("adult_ordersheet_long_Func1train.csv", row =>
     newTrial("Func1train",
         fullscreen()
         ,
-        newText("train_instr", "Look, something might happen to the object!")
+        newText("train_instr", train_trial_instr)
             .css({"font-size": "2em"})
     		.center()
             .print()
         ,
-        newAudio("train_instr", "LookSomething.mp3")
+        newAudio("train_instr", "train_trial_instr.mp3")
             .play("once")
             .wait("first")
         ,
@@ -445,6 +457,19 @@ Template("adult_ordersheet_long_Func1train.csv", row =>
     .log("trial_name", row.trial_name)
     .log("trialID", row.trialID)
     .log("video_name", row.video_name)
+)
+
+newTrial("Func1test_intro",
+    newText('singleFuncTest_block_instr', singleFuncTest_block_instr)
+		.css({'font-size': '1.5em'})
+		.center()
+		.print()
+	,
+	newAudio("singleFuncTest_block_instr", "singleFuncTest_block_instr.mp3")
+        .play()
+        .wait()
+	,
+    newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
 Template("adult_ordersheet_long_Func1test.csv", row =>
@@ -572,6 +597,18 @@ Template("adult_ordersheet_long_Func1test.csv", row =>
     .log("distractor_image", row.distractor1)
 )
 
+newTrial("Func2train_intro",
+    newText('train_block_instr', train_block_instr)
+		.css({'font-size': '1.5em'})
+		.center()
+		.print()
+	,
+	newAudio("train_block_instr", "train_block_instr.mp3")
+        .play()
+        .wait()
+	,
+    newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
+)
 
 Template("adult_ordersheet_long_Func2train.csv", row =>
     newTrial("Func2train",
@@ -606,6 +643,19 @@ Template("adult_ordersheet_long_Func2train.csv", row =>
     .log("trial_name", row.trial_name)
     .log("trialID", row.trialID)
     .log("video_name", row.video_name)
+)
+
+newTrial("Func2test_intro",
+    newText('singleFuncTest_block_instr', singleFuncTest_block_instr)
+		.css({'font-size': '1.5em'})
+		.center()
+		.print()
+	,
+	newAudio("singleFuncTest_block_instr", "singleFuncTest_block_instr.mp3")
+        .play()
+        .wait()
+	,
+    newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
 Template("adult_ordersheet_long_Func2test.csv", row =>
@@ -732,6 +782,19 @@ Template("adult_ordersheet_long_Func2test.csv", row =>
     .log("video_name", row.video_name)
     .log("target_image", row.target)
     .log("distractor_image", row.distractor1)
+)
+
+newTrial("FuncComp_intro",
+    newText('funcCompTest_block_instr', funcCompTest_block_instr)
+		.css({'font-size': '1.5em'})
+		.center()
+		.print()
+	,
+	newAudio("funcCompTest_block_instr", "funcCompTest_block_instr.mp3")
+        .play()
+        .wait()
+	,
+    newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
 Template("adult_ordersheet_long_FuncComp.csv", row => 
