@@ -1,9 +1,10 @@
 PennController.ResetPrefix(null)
 
 // Load in the Zip file from DreamHost to download study stimuli
-PreloadZip("https://harvard-lds-langlab.com/web_experiments_8fdr3kasec/LZ/compose-functions/videos_compressed_trimmed.zip");
+PreloadZip("https://harvard-lds-langlab.com/web_experiments_8fdr3kasec/LZ/compose-functions/video_SingleFunc.zip");
+PreloadZip("https://harvard-lds-langlab.com/web_experiments_8fdr3kasec/LZ/compose-functions/video_FuncComp.zip");
 PreloadZip("https://harvard-lds-langlab.com/web_experiments_8fdr3kasec/LZ/compose-functions/outcomes.zip");
-PreloadZip("https://harvard-lds-langlab.com/web_experiments_8fdr3kasec/LZ/compose-functions/audio.zip");
+PreloadZip("https://harvard-lds-langlab.com/web_experiments_8fdr3kasec/LZ/compose-functions/instructions.zip");
 
 // So that the lists restart/randomize every time a new participant begins the study
 SetCounter("counter", "inc", 1);
@@ -19,10 +20,7 @@ Sequence(
     "Func1test",
     "Func2train",
     "Func2test",
-    "Type1comp",
-    "Type2comp",
-    "Type3comp",
-    "Type4comp",
+    randomize("FuncComp"),
     "send_results",
     "completion_screen"
 );
@@ -700,8 +698,8 @@ Template("adult_ordersheet_long_Func2test.csv", row =>
     .log("distractor_image", row.distractor1)
 )
 
-Template("adult_ordersheet_long_Type1comp.csv", row => 
-    newTrial("Type1comp", 
+Template("adult_ordersheet_long_FuncComp.csv", row => 
+    newTrial("FuncComp", 
         fullscreen()
         ,
         // Play the test video
@@ -772,228 +770,6 @@ Template("adult_ordersheet_long_Type1comp.csv", row =>
     .log("distractor_image3", row.distractor3)
 )
 
-Template("adult_ordersheet_long_Type2comp.csv", row => 
-    newTrial("Type2comp", 
-        fullscreen()
-        ,
-        // Play the test video
-        newText("funcCompTest_instr", "What do you think is behind the screen?")
-            .css({"font-size": "2em"})
-    		.center()
-            .print()
-        ,
-        newAudio("funcCompTest_instr", "WhatDo.mp3")
-            .play("once")
-            .wait("first")
-        ,
-        newVideo("funcCompTest_video", row.video_name)
-            .size(960,540)
-            .disable(0.01) // Disable participant controls
-            .print()
-            .center()
-        ,
-        newTimer("autoplayDelay", 500).start().wait()
-        ,
-        getVideo("funcCompTest_video")
-            .play()
-            .wait("play") // Wait for the video to finish playing
-            .log("play")
-            .log("end")
-        ,
-        getVideo("funcCompTest_video").remove()
-        ,
-        newTimer("postVideoDelay", 500).start().wait()
-        ,
-        // Display test options
-        newImage("target", row.target) 
-            .size(576, 324)
-        ,
-        newImage("distractor1", row.distractor1) 
-            .size(576, 324)
-        ,
-        newImage("distractor2", row.distractor2) 
-            .size(576, 324)
-        ,
-        newImage("distractor3", row.distractor3) 
-            .size(576, 324)
-        ,
-        newCanvas("target-distractors", 1200,700)
-            .add(0, 0, getImage("target"))
-            .add(624, 0, getImage("distractor1"))
-            .add(0, 376, getImage("distractor2"))
-            .add(624, 376, getImage("distractor3"))
-            .center()
-            .print()
-            .log()
-        ,
-        newSelector("selection")
-            .add(
-                getImage("target"), getImage("distractor1"), 
-                getImage("distractor2"), getImage("distractor3")
-            )
-            .shuffle()
-            .log("all")
-            .wait() // Wait for participant to select an option
-        ,
-        getCanvas("target-distractors").remove()
-        ,
-        getText("funcCompTest_instr").remove()
-    )
-    .log("order", row.group)
-    .log("trial_name", row.trial_name)
-    .log("trialID", row.trialID)
-    .log("video_name", row.video_name)
-    .log("target_image", row.target)
-    .log("distractor_image1", row.distractor1)
-    .log("distractor_image2", row.distractor2)
-    .log("distractor_image3", row.distractor3)
-)
-
-Template("adult_ordersheet_long_Type3comp.csv", row => 
-    newTrial("Type3comp", 
-        fullscreen()
-        ,
-        // Play the test video
-        newText("funcCompTest_instr", "What do you think is behind the screen?")
-            .css({"font-size": "2em"})
-    		.center()
-            .print()
-        ,
-        newAudio("funcCompTest_instr", "WhatDo.mp3")
-            .play("once")
-            .wait("first")
-        ,
-        newVideo("funcCompTest_video", row.video_name)
-            .size(960,540)
-            .disable(0.01) // Disable participant controls
-            .print()
-            .center()
-        ,
-        newTimer("autoplayDelay", 500).start().wait()
-        ,
-        getVideo("funcCompTest_video")
-            .play()
-            .wait("play") // Wait for the video to finish playing
-            .log("play")
-            .log("end")
-        ,
-        getVideo("funcCompTest_video").remove()
-        ,
-        newTimer("postVideoDelay", 500).start().wait()
-        ,
-        // Display test options
-        newImage("target", row.target).size(576, 324)
-        ,
-        newImage("distractor1", row.distractor1).size(576, 324)
-        ,
-        newImage("distractor2", row.distractor2).size(576, 324)
-        ,
-        newImage("distractor3", row.distractor3).size(576, 324)
-        ,
-        newCanvas("target-distractors", 1200,700)
-            .add(  0, 0, getImage("target"))
-            .add(624, 0, getImage("distractor1"))
-            .add(0, 376, getImage("distractor2"))
-            .add(624, 376, getImage("distractor3"))
-            .center()
-            .print()
-            .log()
-        ,
-        newSelector("selection")
-            .add(
-                getImage("target"), getImage("distractor1"), 
-                getImage("distractor2"), getImage("distractor3")
-            )
-            .shuffle()
-            .log("all")
-            .wait() // Wait for participant to select an option
-        ,
-        getCanvas("target-distractors").remove()
-        ,
-        getText("funcCompTest_instr").remove()
-    )
-    .log("order", row.group)
-    .log("trial_name", row.trial_name)
-    .log("trialID", row.trialID)
-    .log("video_name", row.video_name)
-    .log("target_image", row.target)
-    .log("distractor_image1", row.distractor1)
-    .log("distractor_image2", row.distractor2)
-    .log("distractor_image3", row.distractor3)
-)
-
-Template("adult_ordersheet_long_Type4comp.csv", row => 
-    newTrial("Type4comp", 
-        fullscreen()
-        ,
-        // Play the test video
-        newText("funcCompTest_instr", "What do you think is behind the screen?")
-            .css({"font-size": "2em"})
-    		.center()
-            .print()
-        ,
-        newAudio("funcCompTest_instr", "WhatDo.mp3")
-            .play("once")
-            .wait("first")
-        ,
-        newVideo("funcCompTest_video", row.video_name)
-            .size(960,540)
-            .disable(0.01) // Disable participant controls
-            .print()
-            .center()
-        ,
-        newTimer("autoplayDelay", 500).start().wait()
-        ,
-        getVideo("funcCompTest_video")
-            .play()
-            .wait("play") // Wait for the video to finish playing
-            .log("play")
-            .log("end")
-        ,
-        getVideo("funcCompTest_video").remove()
-        ,
-        newTimer("postVideoDelay", 500).start().wait()
-        ,
-        // Display test options
-        newImage("target", row.target).size(576, 324)
-        ,
-        newImage("distractor1", row.distractor1).size(576, 324)
-        ,
-        newImage("distractor2", row.distractor2).size(576, 324)
-        ,
-        newImage("distractor3", row.distractor3).size(576, 324)
-        ,
-        newCanvas("target-distractors", 1200,700)
-            .add( 0, 0, getImage("target"))
-            .add(624, 0, getImage("distractor1"))
-            .add(0, 376, getImage("distractor2"))
-            .add(624, 376, getImage("distractor3"))
-            .center()
-            .print()
-            .log()
-        ,
-        newSelector("selection")
-            .add(
-                getImage("target"), getImage("distractor1"), 
-                getImage("distractor2"), getImage("distractor3")
-            )
-            .shuffle()
-            .log("all")
-            .wait() // Wait for participant to select an option
-        ,
-        getCanvas("target-distractors").remove()
-        ,
-        getText("funcCompTest_instr").remove()
-    )
-    .log("order", row.group)
-    .log("trial_name", row.trial_name)
-    .log("trialID", row.trialID)
-    .log("video_name", row.video_name)
-    .log("target_image", row.target)
-    .log("distractor_image1", row.distractor1)
-    .log("distractor_image2", row.distractor2)
-    .log("distractor_image3", row.distractor3)
-)
 // Send results manually
 SendResults("send_results")
 
