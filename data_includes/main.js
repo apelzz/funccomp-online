@@ -25,14 +25,28 @@ Sequence(
     "completion_screen"
 );
 
-CheckPreloaded('Func1train', 120000).label("checkloadings");
+CheckPreloaded('practice', 120000).label("checkloadings");
 
 ////////////////////Text for the consent & instructions////////////////////
 consent_text = "<strong>Researcher:</strong> Lily Zhu, Graduate Student	<br><strong>Faculty Advisor: </strong> Dr. Jesse Snedeker	<br><strong>Contact information: </strong> (617) 496-7175] | kidlab@g.harvard.edu 	<br>	<br><strong>Key Information:</strong>	<br>The following is a short summary of this study to help you decide whether or not you want to participate. More detailed information is listed later on in this form. 	<br>	<br><strong> Why am I being invited to take part in a research study? </strong>	<br>We invite you to take part in this research study because you meet the study’s requirements and are over the age of 18.	<br> 	<br><strong>What should I know about being in a research study? </strong>	<ul>	<li>You'll receive instructions on how to participate.</li>	<li>Whether or not you take part is up to you.</li>	<li>Your participation is completely voluntary.</li>	<li>You can choose not to take part.</li>	<li>You can agree to take part and later change your mind.</li>	<li>Your decision will not be held against you.  </li>	</ul>		<br><strong> Why is this research being done? </strong>	<br>The purpose of this study is to better understand the processes involved in language comprehension and how they develop in adults and children. 		<br><strong> How long will the research last and what will I need to do? </strong>	<br>We expect that you will be in this research study for no longer than 30 minutes.	<br>During this study, you will be asked to watch a series of visual displays and interact with the displays in some way. You may have to respond to, identify, or judge various stimuli. 	<br>During the study, we will record your responses.		<br><strong>Is there any way being in this study could be bad for me? </strong>	<br>We don’t believe there are any risks from participating in this research. 		<br><strong> Will being in this study help me in any way? </strong>	<br>There are no benefits to you besides any enjoyment you may get from the task. There may be possible benefits to others by gaining more information about language comprehension and development; however, this depends on the outcomes of the study.<br>	<br><strong>Detailed Information:</strong><br>The following is more detailed information about this study.	<br><strong> What is the purpose of this research? </strong>	<br>The purpose of this research is to better understand the processes involved in language comprehension and how they develop in adults and children.		<br><strong>How long will I take part in this research? </strong>	<br>This study will take no longer than 30 minutes to complete. 		<br><strong>What can I expect if I take part in this research? </strong>	<br>This study will take place entirely online. During this study, you will be asked to watch a series of visual displays that included short video clips. You will be asked to interact with the displays by clicking on an objects. In addition to watching visual displays, you may hear/see some linguistic and/or non-linguistic stimuli (for example words or sentences) before, during, or after the display is presented.		<br><strong> What happens if I say yes, but I change my mind later? </strong>	<br>You can leave the research at any time it will not be held against you. 		<br><strong> If I take part in this research, how will my privacy be protected? What happens to the information you collect? </strong>	<br>Efforts will be made to limit the use and disclosure of your Personal Information, including research study and medical records, to people who have a need to review this information. We cannot promise complete secrecy. Organizations that may inspect and copy your information include the Institutional Review Board (IRB) and other representatives of this organization. 		<br>If any publication results from this research, you will not be identified by name. If identifiers are removed from your identifiable private information or identifiable samples that are collected during this research, that information or those samples could be used for future research studies or distributed to another investigator for future research studies without your additional informed consent.		<br><strong> What else do I need to know? </strong>	<br>Compensation - If you agree to take part in this research study, we will pay you at a rate of $15 hour.	<br>This research is being funded by the Stimson Fund from Harvard Psychology.		<br><strong> Who can I talk to? </strong>	<br>If you have questions, concerns, or complaints, or think the research has hurt you, contact the researcher at lilyzhu@fas.harvard.edu, the research team at kidlab@g.harvard.edu or (617) 496-2847, or the faculty member supervising this work: Prof Jesse Snedeker, snedeker@wjh.harvard.edu. 		<br>This research has been reviewed and approved by the Harvard University Area Institutional Review Board (“IRB”). You may talk to them at (617) 496-2847 or cuhs@harvard.edu if: 	<ul>	<li> Your questions, concerns, or complaints are not being answered by the research team. </li>	<li> You cannot reach the research team. </li>	<li> You want to talk to someone besides the research team. </li>	<li> You have questions about your rights as a research subject. </li>	<li> You want to get information or provide input about this research. </li></ul>";	
 
 read_consent = "Before we start the study, you’ll need to read the following information and consent to participating. Go ahead and read the consent form below.";
 
-task_description = "In this study, you will watch videos and view images. Based on the prompts and the videos, you will need to click on specific images. Here's an example:"
+general_task_description = "In this study, you will watch some videos and view some images. Based on the prompts and the videos, you will need to click on specific images.";
+
+practice_instr = "Here's an example: You'll see an object after the screen is lifted.";
+
+train_block_instr = "In the next few videos, you'll see an object appear when the screen is lifted. Pay close attention—something might happen to it!";
+
+train_trial_instr = "Look, something might happen to the object!";
+
+singleFuncTest_block_instr = "In the next few videos, you'll first see an object. Then, when the screen falls and covers it, something will happen to the object. Your job is to guess what the object is like afterwards!";
+
+singleFuncTest_trial_instr = "Your turn—can you guess what the object will be like at the end?";
+
+funcCompTest_block_instr = "Alright! Now that you have an idea of what might happen to the object behind the screen, let’s try it some more. The task is the same: Guess what the object will be like after something happens to it behind the screen!";
+
+funcCompTest_trial_instr = "What do you think the object will look like at the end?"
 
 //////////////////////////// Header ////////////////////////////
 Header(
@@ -106,7 +120,7 @@ newTrial("demographics", // Collect demographics
 		.center()
 		.bold()
 	,
-	newText("instr1", "In our lab we are interested in how children learn the early concepts. Today you will be playing a short game to help us answer this question.")
+	newText("instr1", "In our lab, we are interested in how children learn the early concepts. Today you will be playing a short game to help us answer this question.")
         .css({"font-size": "1.5em"})
 		.center()
         .print()
@@ -254,22 +268,36 @@ newTrial("consent", // Collect consent
 .setOption("countsForProgressBar", false)
 
 newTrial("practice",
-    newText('task_description', task_description)
+    newText('general_task_description', general_task_description)
 		.css({'font-size': '1.5em'})
 		.center()
 		.print()
 	,
-	newAudio("task_description", "ClickImages.mp3")
+	newAudio("task_description", "general_task_description.mp3")
         .play()
         .wait()
 	,
-	newVideo("practice_video", "practice_trial.mp4")
+    getText("general_task_description")
+        .remove()
+    ,
+    newTimer("postInstrDelay", 1000).start().wait() 
+    ,
+    newText('practice_instr', practice_instr)
+		.css({'font-size': '1.5em'})
+		.center()
+		.print()
+	,
+    newVideo("practice_video", "practice_trial.mp4")
         .size(960,540)
         .disable(0.01) // Disable participant controls
         .center()
         .print()
     ,
-    newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
+    newAudio("practice_instr", "practice_instr.mp3")
+        .play()
+        .wait()
+	,
+    newTimer("autoplayDelay", 500).start().wait()
     ,
     getVideo("practice_video")
         .play()
@@ -279,17 +307,16 @@ newTrial("practice",
     ,
     getVideo("practice_video").remove()
     ,
+    getText("practice_instr").remove()
+    ,
     newTimer("postVideoDelay", 1000).start().wait() // 1 second wait after video ends
     ,
-    getText("task_description")
-        .remove()
-    ,
-    newText("practice_instr", "What did you just see?")
+    newText("practice_test_instr", "What did you just see?")
             .css({"font-size": "2em"})
     		.center()
             .print()
     ,
-    newAudio("practice_instr", "WhatSee.mp3")
+    newAudio("practice_test_instr", "WhatSee.mp3")
             .play("once")
             .wait("play")
     ,
@@ -313,14 +340,14 @@ newTrial("practice",
     ,
     getCanvas("target-distractor").remove()
     ,
-    getText("practice_instr").remove()
+    getText("practice_test_instr").remove()
     ,
     getSelector("selection")
         .test.selected(getImage("target"))
             .success(
                 getVar("score").set(1)
                 ,
-                newText("chose_target","<strong>Good job! You chose the right answer.</strong>")
+                newText("chose_target","<strong>Great job! You chose the right answer.</strong>")
                     .css({
                         'font-size': '1.75em', 
                         'margin': '2em',
@@ -332,7 +359,7 @@ newTrial("practice",
                     .center()
                     .print()
                 ,
-                newAudio("singleFuncTest_target", "GoodJob.mp3")
+                newAudio("singleFuncTest_target", "GreatJob.mp3")
                     .play("once")
                     .wait()
                 ,
@@ -488,7 +515,7 @@ Template("adult_ordersheet_long_Func1test.csv", row =>
                 .success(
                     getVar("score").set(1)
                     ,
-                    newText("chose_target","<strong>Good job! You chose the right answer.</strong>")
+                    newText("chose_target","<strong>Great job! You chose the right answer.</strong>")
                         .css({
                             'font-size': '1.75em', 
                             'margin': '2em',
@@ -500,7 +527,7 @@ Template("adult_ordersheet_long_Func1test.csv", row =>
                         .center()
                         .print()
                     ,
-                    newAudio("singleFuncTest_target", "GoodJob.mp3")
+                    newAudio("singleFuncTest_target", "GreatJob.mp3")
                         .play("once")
                         .wait()
                     ,
@@ -650,7 +677,7 @@ Template("adult_ordersheet_long_Func2test.csv", row =>
                     getVar("score")
                         .set(1)
                     ,
-                    newText("chose_target","<strong>Good job! You chose the right answer.</strong>")
+                    newText("chose_target","<strong>Great job! You chose the right answer.</strong>")
                         .css({
                             'font-size': '1.75em', 
                             'margin': '2em',
@@ -662,7 +689,7 @@ Template("adult_ordersheet_long_Func2test.csv", row =>
                         .center()
                         .print()
                     ,
-                    newAudio("singleFuncTest_target", "GoodJob.mp3")
+                    newAudio("singleFuncTest_target", "GreatJob.mp3")
                         .play("once")
                         .wait()
                     ,
