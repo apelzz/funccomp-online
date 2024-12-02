@@ -15,6 +15,7 @@ Sequence(
     "startup",
     "demographics",
     "consent",
+    "soundcheck",
     "practice",
     "Func1train_intro",
     "Func1train",
@@ -47,7 +48,7 @@ train_trial_instr = "Look, something might happen to the object!";
 
 singleFuncTest_block_instr = "In the next few videos, you'll first see an object. Then, when the screen falls and covers it, something will happen to the object. Your job is to guess what the object is like afterwards!";
 
-singleFuncTest_trial_instr = "Your turn—can you guess what the object will be like at the end?";
+singleFuncTest_trial_instr = "Can you guess what the object will be like at the end?";
 
 funcCompTest_block_instr = "Alright! Now that you have an idea of what might happen to the object behind the screen, let’s try it some more. The task is the same: Guess what the object will be like after something happens to it behind the screen!";
 
@@ -281,6 +282,42 @@ newTrial("consent", // Collect consent
 )
 .setOption("countsForProgressBar", false)
 
+newTrial( "soundcheck" , 
+    newText("sound_checkdirections", "Click below to listen to the directions for the sound check!")
+        .center()
+        .print()
+    ,
+	newText("separate10"," ").print()
+	,
+    newAudio("soundcheckdirections", "soundcheck.mp3")
+        .center()
+        .print()
+        .wait()
+    ,
+    newText("separate11"," ").print()
+	,
+    newTextInput("soundcheckinput","")
+		.before(newText("soundcheckinput", "Please type the keyword here and then press Enter.  "))
+		.center()
+		.print()
+		.wait()
+	,
+	newButton("moveon","Click to continue!")
+        .center()
+        .print()
+        .wait()
+    ,
+    getAudio("soundcheckdirections").remove(),
+    getText("sound_checkdirections").remove(),
+    getButton("moveon").remove(),
+    newVar('soundcheck')
+        .set(getTextInput("soundcheckinput"))
+        .global()
+)
+.log('soundcheck?', getVar('soundcheck'));
+
+
+//////////////Practice trial//////////////
 newTrial("practice",
     newText('general_task_description', general_task_description)
 		.css({'font-size': '1.5em'})
@@ -415,7 +452,10 @@ newTrial("practice",
         .wait()
 )
 
+//////////////Main experiment//////////////
 newTrial("Func1train_intro",
+    fullscreen()
+    ,
     newText('train_block_instr', train_block_instr)
 		.css({'font-size': '1.5em'})
 		.center()
@@ -428,7 +468,6 @@ newTrial("Func1train_intro",
     newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
-//////////////Main experiment//////////////
 Template("adult_ordersheet_long_Func1train.csv", row =>
     newTrial("Func1train",
         fullscreen()
@@ -465,6 +504,8 @@ Template("adult_ordersheet_long_Func1train.csv", row =>
 )
 
 newTrial("Func1test_intro",
+    fullscreen()
+    ,
     newText('singleFuncTest_block_instr', singleFuncTest_block_instr)
 		.css({'font-size': '1.5em'})
 		.center()
@@ -603,6 +644,8 @@ Template("adult_ordersheet_long_Func1test.csv", row =>
 )
 
 newTrial("Func2train_intro",
+    fullscreen()
+    ,
     newText('train_block_instr', train_block_instr)
 		.css({'font-size': '1.5em'})
 		.center()
@@ -651,6 +694,8 @@ Template("adult_ordersheet_long_Func2train.csv", row =>
 )
 
 newTrial("Func2test_intro",
+    fullscreen()
+    ,
     newText('singleFuncTest_block_instr', singleFuncTest_block_instr)
 		.css({'font-size': '1.5em'})
 		.center()
@@ -790,6 +835,8 @@ Template("adult_ordersheet_long_Func2test.csv", row =>
 )
 
 newTrial("FuncComp_intro",
+    fullscreen()
+    ,
     newText('funcCompTest_block_instr', funcCompTest_block_instr)
 		.css({'font-size': '1.5em'})
 		.center()
