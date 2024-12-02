@@ -16,10 +16,15 @@ Sequence(
     "demographics",
     "consent",
     "practice",
+    "Func1train_intro",
     "Func1train",
+    "Func1test_intro",
     "Func1test",
+    "Func2train_intro",
     "Func2train",
+    "Func2test_intro",
     "Func2test",
+    "FuncComp_intro",
     randomize("FuncComp"),
     "send_results",
     "completion_screen"
@@ -433,17 +438,17 @@ Template("adult_ordersheet_long_Func1train.csv", row =>
     		.center()
             .print()
         ,
-        newAudio("train_instr", "train_trial_instr.mp3")
-            .play("once")
-            .wait("first")
-        ,
         newVideo("train_video", row.video_name)
             .size(960,540)
             .disable(0.01) // Disable participant controls
             .center()
             .print()
         ,
-        newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
+        newAudio("train_instr", "train_trial_instr.mp3")
+            .play("once")
+            .wait("first")
+        ,
+        newTimer("autoplayDelay", 500).start().wait()
         ,
         getVideo("train_video")
             .play()
@@ -491,20 +496,20 @@ Template("adult_ordersheet_long_Func1test.csv", row =>
                 )
         ,
         // Play the test video
-        newText("singleFuncTest_instr", "Your turn—what's behind the screen?")
+        newText("singleFuncTest_instr", singleFuncTest_trial_instr)
             .css({"font-size": "2em"})
     		.center()
             .print()
-        ,
-        newAudio("singleFuncTest_instr", "YourTurn.mp3")
-            .play("once")
-            .wait("play")
         ,
         newVideo("singleFuncTest_video", row.video_name)
             .size(960,540)
             .disable(0.01) // Disable participant controls
             .print()
             .center()
+        ,
+        newAudio("singleFuncTest_instr", "singleFuncTest_trial_instr.mp3")
+            .play("once")
+            .wait("play")
         ,
         newTimer("autoplayDelay", 500).start().wait()
         ,
@@ -614,14 +619,10 @@ Template("adult_ordersheet_long_Func2train.csv", row =>
     newTrial("Func2train",
         fullscreen()
         ,
-        newText("train_instr", "Look, something might happen to the object!")
+        newText("train_instr", train_trial_instr)
             .css({"font-size": "2em"})
     		.center()
             .print()
-        ,
-        newAudio("train_instr", "LookSomething.mp3")
-            .play("once")
-            .wait("first")
         ,
         newVideo("train_video", row.video_name)
             .size(960,540)
@@ -629,7 +630,11 @@ Template("adult_ordersheet_long_Func2train.csv", row =>
             .center()
             .print()
         ,
-        newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
+        newAudio("train_instr", "train_trial_instr.mp3")
+            .play("once")
+            .wait("first")
+        ,
+        newTimer("autoplayDelay", 500).start().wait() // 1 second delay
         ,
         getVideo("train_video")
             .play()
@@ -677,20 +682,20 @@ Template("adult_ordersheet_long_Func2test.csv", row =>
                 )
         ,
         // Play the test video
-        newText("singleFuncTest_instr", "Your turn—what's behind the screen?")
+        newText("singleFuncTest_instr", singleFuncTest_trial_instr)
             .css({"font-size": "2em"})
     		.center()
             .print()
-        ,
-        newAudio("singleFuncTest_instr", "YourTurn.mp3")
-            .play("once")
-            .wait("play")
         ,
         newVideo("singleFuncTest_video", row.video_name)
             .size(960,540)
             .disable(0.01) // Disable participant controls
             .print()
             .center()
+        ,
+        newAudio("singleFuncTest_instr", "singleFuncTest_trial_instr.mp3")
+            .play("once")
+            .wait("play")
         ,
         newTimer("autoplayDelay", 500).start().wait()
         ,
@@ -802,20 +807,20 @@ Template("adult_ordersheet_long_FuncComp.csv", row =>
         fullscreen()
         ,
         // Play the test video
-        newText("funcCompTest_instr", "What do you think is behind the screen?")
+        newText("funcCompTest_instr", funcCompTest_trial_instr)
             .css({"font-size": "2em"})
     		.center()
             .print()
-        ,
-        newAudio("funcCompTest_instr", "WhatDo.mp3")
-            .play("once")
-            .wait("first")
         ,
         newVideo("funcCompTest_video", row.video_name)
             .size(960,540)
             .disable(0.01) // Disable participant controls
             .print()
             .center()
+        ,
+        newAudio("funcCompTest_instr", "funcCompTest_trial_instr.mp3")
+            .play("once")
+            .wait("first")
         ,
         newTimer("autoplayDelay", 500).start().wait()
         ,
