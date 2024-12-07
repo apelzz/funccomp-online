@@ -1,0 +1,17 @@
+"group","trial_name","trial_type","video_name","trialID","feedback","target","distractor1","distractor2","distractor3"
+1,"Func1train_changed","Func1train","SingleFunc_train_smash_changed_left_2.mp4",1,NA,NA,NA,NA,NA
+1,"Func1train_unchanged","Func1train","SingleFunc_train_smash_unchanged_left_2.mp4",2,NA,NA,NA,NA,NA
+2,"Func1train_changed","Func1train","SingleFunc_train_smash_changed_left_2.mp4",1,NA,NA,NA,NA,NA
+2,"Func1train_unchanged","Func1train","SingleFunc_train_smash_unchanged_left_2.mp4",2,NA,NA,NA,NA,NA
+3,"Func1train_changed","Func1train","SingleFunc_train_smash_changed_right_1.mp4",1,NA,NA,NA,NA,NA
+3,"Func1train_unchanged","Func1train","SingleFunc_train_smash_unchanged_right_1.mp4",2,NA,NA,NA,NA,NA
+4,"Func1train_changed","Func1train","SingleFunc_train_smash_changed_right_2.mp4",1,NA,NA,NA,NA,NA
+4,"Func1train_unchanged","Func1train","SingleFunc_train_smash_unchanged_right_2.mp4",2,NA,NA,NA,NA,NA
+5,"Func1train_changed","Func1train","SingleFunc_train_push_changed_left_1.mp4",1,NA,NA,NA,NA,NA
+5,"Func1train_unchanged","Func1train","SingleFunc_train_push_unchanged_left_1.mp4",2,NA,NA,NA,NA,NA
+6,"Func1train_changed","Func1train","SingleFunc_train_push_changed_left_2.mp4",1,NA,NA,NA,NA,NA
+6,"Func1train_unchanged","Func1train","SingleFunc_train_push_unchanged_left_2.mp4",2,NA,NA,NA,NA,NA
+7,"Func1train_changed","Func1train","SingleFunc_train_push_changed_right_1.mp4",1,NA,NA,NA,NA,NA
+7,"Func1train_unchanged","Func1train","SingleFunc_train_push_unchanged_right_1.mp4",2,NA,NA,NA,NA,NA
+8,"Func1train_changed","Func1train","SingleFunc_train_push_changed_right_1.mp4",1,NA,NA,NA,NA,NA
+8,"Func1train_unchanged","Func1train","SingleFunc_train_push_unchanged_right_1.mp4",2,NA,NA,NA,NA,NA

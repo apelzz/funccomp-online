@@ -52,7 +52,7 @@ funcCompTest_block_instr = "Alright! Now that you have an idea of what might hap
 funcCompTest_trial_instr = "What do you think the object will look like at the end?";
 
 debrief1 = "Let me tell you a little more about why we’re doing this study!";
-debriefextended = "Dr. Jesse Snedeker <br>	Lily Zihui Zhu <br>	<br>	<strong>Debriefing for \"Function Composition\" </strong><br>	<br>  	Thank you for participating in our study. This study examines how people systematically combine concepts in the domain of physical reasoning. Participants watched videos depicting two physical functions: pushing and smashing, which could change an object’s location and state, respectively. At test, the target object appeared at different locations, and the functions were applied in varying sequences. The outcomes depended on the starting state and the order of events. For example, if the object began on the right and smashing occurred first on the left, followed by pushing it to the left, the object remained intact. However, reversing the order—pushing before smashing—resulted in the object being smashed. Success required not only representing both functions but also understanding that the order of application could alter the intermediate context, thereby affecting the final outcome.  <br>		<u>How to contact the researcher:</u> If you have questions or concerns about your participation or payment, or want to request a summary of research findings, please contact the researcher: (<strong>Lily Zihui Zhu</strong>, lilyzhu@fas.harvard.edu). For any other problems related to this study, you may also contact the faculty member supervising this work: (<strong>Jesse Snedeker</strong>, snedeker@wjh.harvard.edu). <br>		<u> Whom to contact about your rights in this research </u>: For questions, concerns, suggestions, or complaints that are not being addressed by the researcher, or research-related harm: Committee on the Use of Human Subjects in Research at Harvard University, Phone: 617-496-CUHS (2847). Email: cuhs@harvard.edu <br>";
+debriefextended = "<br><br>Dr. Jesse Snedeker <br>	Lily Zihui Zhu <br>	<br>	<strong>Debriefing for \"Function Composition\" </strong><br>	<br>  	Thank you for participating in our study. This study examines how people systematically combine concepts in the domain of physical reasoning. Participants watched videos depicting two physical functions: pushing and smashing, which could change an object’s location and state, respectively. At test, the target object appeared at different locations, and the functions were applied in varying sequences. The outcomes depended on the starting state and the order of events. For example, if the object began on the right and smashing occurred first on the left, followed by pushing it to the left, the object remained intact. However, reversing the order—pushing before smashing—resulted in the object being smashed. Success required not only representing both functions but also understanding that the order of application could alter the intermediate context, thereby affecting the final outcome.  <br><br>		<u>How to contact the researcher:</u> If you have questions or concerns about your participation or payment, or want to request a summary of research findings, please contact the researcher: (<strong>Lily Zihui Zhu</strong>, lilyzhu@fas.harvard.edu). For any other problems related to this study, you may also contact the faculty member supervising this work: (<strong>Jesse Snedeker</strong>, snedeker@wjh.harvard.edu). <br><br>		<u> Whom to contact about your rights in this research: </u> For questions, concerns, suggestions, or complaints that are not being addressed by the researcher, or research-related harm: Committee on the Use of Human Subjects in Research at Harvard University, Phone: 617-496-CUHS (2847). Email: cuhs@harvard.edu <br>";
 
 
 //////////////////////////// Header ////////////////////////////
@@ -469,12 +469,12 @@ newTrial("Func1train_intro",
     newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
-Template("adult_ordersheet_long_Func1train.csv", row =>
+Template("adult_ordersheet_long_Func1train_randomize.csv", row =>
     newTrial("Func1train",
         fullscreen()
         ,
         newText("train_instr", train_trial_instr)
-            .css({"font-size": "2em"})
+            .css({"font-size": "1.7em"})
     		.center()
             .print()
         ,
@@ -519,7 +519,7 @@ newTrial("Func1test_intro",
     newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
-Template("adult_ordersheet_long_Func1test.csv", row =>
+Template("adult_ordersheet_long_Func1test_randomize.csv", row =>
     newTrial("Func1test",
         fullscreen()
         ,
@@ -539,7 +539,7 @@ Template("adult_ordersheet_long_Func1test.csv", row =>
         ,
         // Play the test video
         newText("singleFuncTest_instr", singleFuncTest_trial_instr)
-            .css({"font-size": "2em"})
+            .css({"font-size": "1.7em"})
     		.center()
             .print()
         ,
@@ -659,12 +659,12 @@ newTrial("Func2train_intro",
     newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
-Template("adult_ordersheet_long_Func2train.csv", row =>
+Template("adult_ordersheet_long_Func2train_randomize.csv", row =>
     newTrial("Func2train",
         fullscreen()
         ,
         newText("train_instr", train_trial_instr)
-            .css({"font-size": "2em"})
+            .css({"font-size": "1.7em"})
     		.center()
             .print()
         ,
@@ -709,7 +709,7 @@ newTrial("Func2test_intro",
     newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
-Template("adult_ordersheet_long_Func2test.csv", row =>
+Template("adult_ordersheet_long_Func2test_randomize.csv", row =>
     newTrial("Func2test",
         fullscreen()
         ,
@@ -729,7 +729,7 @@ Template("adult_ordersheet_long_Func2test.csv", row =>
         ,
         // Play the test video
         newText("singleFuncTest_instr", singleFuncTest_trial_instr)
-            .css({"font-size": "2em"})
+            .css({"font-size": "1.7em"})
     		.center()
             .print()
         ,
@@ -850,13 +850,13 @@ newTrial("FuncComp_intro",
     newTimer("autoplayDelay", 1000).start().wait() // 1 second delay
 )
 
-Template("adult_ordersheet_long_FuncComp.csv", row => 
+Template("adult_ordersheet_long_FuncComp_randomize.csv", row => 
     newTrial("FuncComp", 
         fullscreen()
         ,
         // Play the test video
         newText("funcCompTest_instr", funcCompTest_trial_instr)
-            .css({"font-size": "2em"})
+            .css({"font-size": "1.7em"})
     		.center()
             .print()
         ,
